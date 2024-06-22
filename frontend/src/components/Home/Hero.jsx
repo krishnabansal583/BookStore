@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import "../../index.css"; // Import your custom CSS
 import { BiRightArrow } from "react-icons/bi";
+import { Link } from "react-router-dom";
 const Hero = () => {
   // Define an array of image paths
   const images = ["./book1.png", "./book2.png", "./book3.png", "./book4.png"];
@@ -27,10 +28,10 @@ const Hero = () => {
   }, []); // Empty dependency array to run effect only once on mount
 
   return (
-    <div className="relative h-[75vh] flex bg-ffefe0">
+    <div className="h-[75vh] flex bg-ffefe0 flex-col md:flex-row items-center justify-center">
       {/* Dark circle patch */}
-      <div className="dark-circle"></div>
-      <div className="w-full lg:w-3/6 flex flex-col items-center lg:items-start justify-center relative">
+      <div className=" dark-circle"></div>
+      <div className="w-full mb-12 md:mb-0 lg:w-3/6 flex flex-col items-center lg:items-start justify-center relative">
         <h1 className="text-4xl lg:text-6xl font-semibold text-black text-center lg:text-left">
           Unlock Adventures through Knowledge
         </h1>
@@ -39,10 +40,11 @@ const Hero = () => {
           promise to enrich and empower.
         </p>
         <div className="mt-8">
-      <button className="text-white bg-[#7C79ED] text-xl lg:text-2xl font-semibold px-10 py-3 rounded-full shadow-xl hover:shadow-lg flex items-center gap-1">
+      <Link to="/all-books"
+      className="text-white bg-[#7C79ED] text-xl lg:text-2xl font-semibold px-10 py-3 rounded-full shadow-xl hover:shadow-lg flex items-center gap-1">
         Explore Books
         <BiRightArrow style={{ fontSize: '1rem', verticalAlign: 'middle' }} />
-      </button>
+      </Link>
     </div>
       </div>
       <div className="w-full lg:w-3/6 h-auto lg:h-[100%] flex items-center justify-center relative">
