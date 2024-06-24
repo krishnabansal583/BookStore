@@ -48,12 +48,28 @@
   border-radius: 50%;
   backdrop-filter: blur(10px);
 }
-/* index.css */
+
 .custom-shadow {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
-/* index.css */
+
 .gradient-background {
   background: linear-gradient(to bottom, #ffffff, #ffcccb);
+}
+
+.glass-effect {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: black; 
+}
+
+.bg-transparent {
+  background-color: transparent;
+}
+
+.text-black {
+  color: black;
 }
