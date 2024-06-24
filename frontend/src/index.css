@@ -6,19 +6,6 @@
   text-shadow: 1px 1px 3px rgba(1, 0, 0, 0.3);
 }
 
-.transparent-circle {
-  content: "";
-  position: absolute;
-  top: -100px;
-  left: -100px;
-  width: 200px;
-  height: 200px;
-  background-color: #ff5d06;
-  border-radius: 50%;
-  opacity: 0.5;
-  z-index: -1;
-}
-
 .font-roboto {
   font-family: "Roboto", sans-serif;
 }
@@ -35,7 +22,7 @@
 }
 
 .hero-image:hover {
-  transform: translateY(-10px);
+  transform: translateY(-5px);
 }
 .signin-button,
 .signup-button {
@@ -65,4 +52,8 @@
 .custom-shadow {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+/* index.css */
+.gradient-background {
+  background: linear-gradient(to bottom, #ffffff, #ffcccb);
 }
