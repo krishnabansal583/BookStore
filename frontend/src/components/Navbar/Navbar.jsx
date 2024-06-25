@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../../index.css"; // Import your custom CSS
 import { Link } from "react-router-dom";
 import { FaGripLines } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const links = [
@@ -27,6 +28,10 @@ const Navbar = () => {
     },
   ];
 
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  if (isLoggedIn === false) {
+    links.splice(3, 3);
+  }
   const [MobileNav, setMobileNav] = useState("hidden");
 
   return (
@@ -43,29 +48,41 @@ const Navbar = () => {
         </Link>
         <div className="hidden md:flex nav-links flex items-center gap-6 flex-grow justify-center">
           {links.map((item, i) => (
-            <Link
-              to={item.link}
-              className="nav-link text-base font-medium text-gray-700 font-roboto"
-              key={i}
-            >
-              {item.title}
-            </Link>
+            <div className="flex items-center" key={i}>
+              {item.title === "Profile" ? (
+                <Link
+                  to={item.link}
+                  className="signin-button px-4 py-2 bg-white-500 text-black rounded transform transition-transform hover:scale-105"
+                >
+                  {item.title}
+                </Link>
+              ) : (
+                <Link
+                  to={item.link}
+                  className="nav-link text-base font-medium text-gray-700 font-roboto"
+                >
+                  {item.title}
+                </Link>
+              )}
+            </div>
           ))}
         </div>
-        <div className="hidden md:flex gap-4 items-center">
-          <Link
-            to="/SignIn"
-            className="signin-button px-4 py-2 bg-white-500 text-black rounded transform transition-transform hover:scale-105"
-          >
-            Sign In
-          </Link>
-          <Link
-            to="/SignUp"
-            className="signup-button px-4 py-2 bg-white-500 text-black rounded transform transition-transform hover:scale-105"
-          >
-            Sign Up
-          </Link>
-        </div>
+        {isLoggedIn === false && (
+          <div className="hidden md:flex gap-4 items-center">
+            <Link
+              to="/SignIn"
+              className="signin-button px-4 py-2 bg-white-500 text-black rounded transform transition-transform hover:scale-105"
+            >
+              Sign In
+            </Link>
+            <Link
+              to="/SignUp"
+              className="signup-button px-4 py-2 bg-white-500 text-black rounded transform transition-transform hover:scale-105"
+            >
+              Sign Up
+            </Link>
+          </div>
+        )}
         <button
           className="block md:hidden text-black text-2xl hover:text-gray-600"
           onClick={() =>
@@ -86,10 +103,10 @@ const Navbar = () => {
             className={`${MobileNav} text-white text-3xl font-semibold mb-7  nav-link font-roboto`}
             key={i}
             onClick={() =>
-                MobileNav === "hidden"
-                  ? setMobileNav("block")
-                  : setMobileNav("hidden")
-              }
+              MobileNav === "hidden"
+                ? setMobileNav("block")
+                : setMobileNav("hidden")
+            }
           >
             {item.title}
           </Link>

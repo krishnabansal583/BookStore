@@ -1,10 +1,47 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "../index.css"; 
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "../index.css";
+import axios from "axios";
 
 const SignUp = () => {
+  const [Values, setValues] = useState({
+    username: "",
+    email: "",
+    password: "",
+    address: "",
+  });
+  const navigate = useNavigate();
+  const change = (e) => {
+    const { name, value } = e.target;
+    setValues({ ...Values, [name]: value });
+  };
+  const submit = async () => {
+    try {
+      if (
+        Values.username === "" ||
+        Values.email === "" ||
+        Values.password === "" ||
+        Values.address === ""
+      ) {
+        alert("All fields are required");
+      } else {
+        const response = await axios.post(
+          "http://localhost:1000/api/v1/sign-up",Values
+        );
+        alert(response.data.message)
+        navigate("/SignIn")
+      }
+    } catch (error) {
+      alert(error.response.data.message);
+    }
+  };
   return (
-    <div className="h-screen bg-cover bg-center flex items-center justify-center" style={{ backgroundImage: `url('/popartstyledimageofapackedbookstore-ezgif.com-webp-to-png-converter.png')` }}>
+    <div
+      className="h-screen bg-cover bg-center flex items-center justify-center"
+      style={{
+        backgroundImage: `url('/popartstyledimageofapackedbookstore-ezgif.com-webp-to-png-converter.png')`,
+      }}
+    >
       <div className="glass-effect rounded-3xl px-6 py-4 w-full md:w-2/5 lg:w-1/3">
         <p className="text-black text-2xl font-bold text-center">Sign Up</p>
 
@@ -20,6 +57,8 @@ const SignUp = () => {
               placeholder="Enter your username"
               name="username"
               required
+              value={Values.username}
+              onChange={change}
             />
           </div>
 
@@ -34,6 +73,8 @@ const SignUp = () => {
               placeholder="xyz@example.com"
               name="email"
               required
+              value={Values.email}
+              onChange={change}
             />
           </div>
 
@@ -48,6 +89,8 @@ const SignUp = () => {
               placeholder="Enter your password"
               name="password"
               required
+              value={Values.password}
+              onChange={change}
             />
           </div>
 
@@ -62,13 +105,16 @@ const SignUp = () => {
               placeholder="Enter your address"
               name="address"
               required
+              value={Values.address}
+              onChange={change}
             />
           </div>
 
           <div className="mt-4">
             <button
               type="submit"
-              className="w-full bg-blue-500 text-white font-semibold py-2 rounded hover:bg-blue-600"
+              className="w-full bg-blue-500 text-white font-semibold py-2 rounded hover:bg-blue-600 "
+              onClick={submit}
             >
               SignUp
             </button>
