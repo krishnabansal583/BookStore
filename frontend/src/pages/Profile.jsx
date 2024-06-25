@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../components/Profile.jsx/Sidebar";
+import Sidebar from "../components/Profile/Sidebar";
 import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Loader from "../components/Loader/Loader";
@@ -16,9 +16,8 @@ const Profile = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axios.post(
+        const response = await axios.get(
           "http://localhost:1000/api/v1/get-user-information",
-          {},
           { headers } // Pass headers as third argument
         );
         setProfile(response.data);
@@ -32,13 +31,13 @@ const Profile = () => {
   return (
     <div className="gradient-background px-2 md:px-12 flex flex-col md:flex-row h-screen py-8 gap-4 text-black">
       {!Profile ? (
-        <Loader />
+       <div className="w-full h-[100%] flex items-center justify-center"> <Loader /> </div>
       ) : (
         <>
-          <div className="w-1/6">
-            <Sidebar />
+          <div className=" w-full md:w-1/5">
+            <Sidebar data={Profile} />
           </div>
-          <div className="w-5/6">
+          <div className="w-full md:w-3/5">
             <Outlet />
           </div>
         </>
