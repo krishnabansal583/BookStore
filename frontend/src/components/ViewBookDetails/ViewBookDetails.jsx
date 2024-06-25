@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "../Loader/Loader";
 import { useParams } from "react-router-dom";
+import { FaHeart, FaShoppingCart } from "react-icons/fa";
 
 const ViewBookDetails = () => {
   const { id } = useParams();
@@ -34,10 +35,20 @@ const ViewBookDetails = () => {
     <div className="h-screen flex flex-col bg-gradient-to-b from-white to-[#fab9c4]">
       <div className="flex-grow px-4 py-8 flex flex-col md:flex-row gap-8 md:px-12">
         <div className="flex flex-col md:flex-row gap-8 w-full h-auto">
-          <div className="bg-[#6851CD] rounded-2xl mt-5 p-4 h-[30vh] md:h-[60vh] w-full sm:w-[50%] md:w-[30%] flex items-center justify-center">
-            {data.imageURL && (
-              <img src={data.imageURL} alt="Book Cover" className="h-full md:h-[60vh] rounded" />
-            )}
+          <div className="relative w-full sm:w-[50%] md:w-[35%]">
+            <div className="bg-[#6851CD] rounded-2xl mt-5 p-4 h-[30vh] md:h-[60vh] flex items-center justify-center relative">
+              {data.imageURL && (
+                <img src={data.imageURL} alt="Book Cover" className="h-full md:h-[60vh] rounded" />
+              )}
+              <div className="absolute top-0 right-[-8px] mr-4 mt-4 flex flex-col items-center justify-center">
+                <button className="bg-white rounded-full text-2xl p-2 text-red-600 ">
+                  <FaHeart />
+                </button>
+                <button className="bg-white rounded-full text-2xl p-2 mt-5 text-blue-700">
+                  <FaShoppingCart />
+                </button>
+              </div>
+            </div>
           </div>
           <div className="p-4 w-full md:w-[75%]">
             <h1 className="text-3xl lg:text-4xl text-zinc-500 font-semibold mb-2">
