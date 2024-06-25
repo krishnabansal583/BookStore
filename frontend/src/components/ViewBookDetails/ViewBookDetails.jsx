@@ -47,6 +47,14 @@ const ViewBookDetails = () => {
     );
     alert(response.data.message);
   };
+  const handleCart = async () => {
+    const response = await axios.put(
+      "http://localhost:1000/api/v1/add-to-cart",
+      {},
+      { headers }
+    );
+    alert(response.data.message);
+  };
 
   return (
     <div className="h-screen flex flex-col bg-gradient-to-b from-white to-[#fab9c4]">
@@ -70,7 +78,10 @@ const ViewBookDetails = () => {
                   >
                     <FaHeart />
                   </button>
-                  <button className="bg-white rounded-full text-2xl p-2 mt-5 text-blue-700">
+                  <button
+                    className="bg-white rounded-full text-2xl p-2 mt-5 text-blue-700"
+                    onClick={handleCart}
+                  >
                     <FaShoppingCart />
                   </button>
                 </div>
