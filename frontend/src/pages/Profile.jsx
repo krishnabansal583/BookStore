@@ -3,10 +3,10 @@ import Sidebar from "../components/Profile/Sidebar";
 import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Loader from "../components/Loader/Loader";
-import axios from "axios"; // Ensure axios is imported
+import axios from "axios";
 
 const Profile = () => {
-  const [Profile, setProfile] = useState(null); // Initialize as null
+  const [Profile, setProfile] = useState(null);
 
   const headers = {
     id: localStorage.getItem("id"),
@@ -18,7 +18,7 @@ const Profile = () => {
       try {
         const response = await axios.get(
           "http://localhost:1000/api/v1/get-user-information",
-          { headers } // Pass headers as third argument
+          { headers }
         );
         setProfile(response.data);
       } catch (error) {
@@ -29,15 +29,18 @@ const Profile = () => {
   }, []);
 
   return (
-    <div className="gradient-background px-2 md:px-12 flex flex-col md:flex-row h-screen py-8 gap-4 text-black">
+    <div className="gradient-background px-2 md:px-12 flex flex-col md:flex-row  py-8 gap-4 text-black">
       {!Profile ? (
-       <div className="w-full h-[100%] flex items-center justify-center"> <Loader /> </div>
+        <div className="w-full h-[100%] flex items-center justify-center">
+          {" "}
+          <Loader />{" "}
+        </div>
       ) : (
         <>
-          <div className=" w-full md:w-1/5">
+          <div className=" w-full md:w-1/5 h-screen ">
             <Sidebar data={Profile} />
           </div>
-          <div className="w-full md:w-3/5">
+          <div className="w-full md:w-4/5">
             <Outlet />
           </div>
         </>

@@ -73,13 +73,13 @@ const ViewBookDetails = () => {
               {isLoggedIn === true && role === "user" && (
                 <div className="absolute top-0 right-[-8px] mr-4 mt-4 flex flex-col items-center justify-center">
                   <button
-                    className="bg-white rounded-full text-2xl p-2 text-red-600"
+                    className="bg-white rounded-full text-2xl p-2 text-red-500 hover:text-red-600"
                     onClick={handleFavourite}
                   >
                     <FaHeart />
                   </button>
                   <button
-                    className="bg-white rounded-full text-2xl p-2 mt-5 text-blue-700"
+                    className="bg-white rounded-full text-2xl p-2 mt-5 text-blue-600 hover:text-blue-700"
                     onClick={handleCart}
                   >
                     <FaShoppingCart />

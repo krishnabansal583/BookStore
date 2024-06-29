@@ -48,7 +48,7 @@ const SignIn = () => {
     <div
       className="h-screen bg-cover bg-center flex items-center justify-center"
       style={{
-        backgroundImage: `url('/popartstyledimageofapackedbookstore-ezgif.com-webp-to-png-converter.png')`,
+        backgroundImage: `url('/signup.png')`,
       }}
     >
       <div className="glass-effect rounded-3xl px-6 py-4 w-full md:w-2/5 lg:w-1/3">

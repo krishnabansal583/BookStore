@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
-import "../../index.css"; // Import your custom CSS
+import "../../index.css";
 import { BiRightArrow } from "react-icons/bi";
 import { Link } from "react-router-dom";
 const Hero = () => {
-  // Define an array of image paths
-  const images = ["./book1.png", "./book2.png", "./book3.png", "./book4.png"];
+  const images = ["./book1.jpg", "./book2.jpg", "./book3.jpg", "./book4.jpg"];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -21,31 +20,33 @@ const Hero = () => {
     );
   };
 
-  // Use useEffect to set up an interval for automatic image sliding
   useEffect(() => {
-    const interval = setInterval(handleNext, 4000); // Change image every 4 seconds
-    return () => clearInterval(interval); // Clear interval on component unmount
-  }, []); // Empty dependency array to run effect only once on mount
+    const interval = setInterval(handleNext, 4000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="h-[75vh] flex bg-ffefe0 flex-col md:flex-row items-center justify-center">
-      {/* Dark circle patch */}
       <div className=" dark-circle"></div>
       <div className="w-full mb-12 md:mb-0 lg:w-3/6 flex flex-col items-center lg:items-start justify-center relative">
         <h1 className="text-4xl lg:text-6xl font-semibold text-black text-center lg:text-left">
           Unlock Adventures through Knowledge
         </h1>
-        <p className="mt-4 text-xl text-black text-center lg:text-left">
+        <p className="mt-4 text-xl text-gray-700 text-center lg:text-left">
           Dive into a world of knowledge and inspiration with our books that
           promise to enrich and empower.
         </p>
         <div className="mt-8">
-      <Link to="/all-books"
-      className="text-white bg-[#7C79ED] text-xl lg:text-2xl font-semibold px-10 py-3 rounded-full shadow-xl hover:shadow-lg flex items-center gap-1">
-        Explore Books
-        <BiRightArrow style={{ fontSize: '1rem', verticalAlign: 'middle' }} />
-      </Link>
-    </div>
+          <Link
+            to="/all-books"
+            className="text-white bg-[#7C79ED] text-xl lg:text-2xl font-semibold px-10 py-3 rounded-full shadow-xl hover:shadow-lg flex items-center gap-1"
+          >
+            Explore Books
+            <BiRightArrow
+              style={{ fontSize: "1rem", verticalAlign: "middle" }}
+            />
+          </Link>
+        </div>
       </div>
       <div className="w-full lg:w-3/6 h-auto lg:h-[100%] flex items-center justify-center relative">
         <button
@@ -53,7 +54,7 @@ const Hero = () => {
           className="absolute left-0 p-2 bg-gray-200 hover:bg-gray-300 rounded-full"
           aria-label="Previous Image"
         >
-          <BsChevronLeft size={24} /> {/* Left arrow icon */}
+          <BsChevronLeft size={24} />
         </button>
         <img
           src={images[currentImageIndex]}
@@ -65,7 +66,7 @@ const Hero = () => {
           className="absolute right-0 p-2 bg-gray-200 hover:bg-gray-300 rounded-full"
           aria-label="Next Image"
         >
-          <BsChevronRight size={24} /> {/* Right arrow icon */}
+          <BsChevronRight size={24} />
         </button>
       </div>
     </div>

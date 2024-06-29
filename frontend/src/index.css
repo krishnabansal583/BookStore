@@ -40,10 +40,10 @@
 
 .dark-circle {
   position: absolute;
-  top: 10px;
-  left: 30px;
-  width: 200px;
-  height: 200px;
+  top: 130px;
+  left: 10px;
+  width: 150px;
+  height: 150px;
   background-color: #fab9c4;
   border-radius: 50%;
   backdrop-filter: blur(10px);
