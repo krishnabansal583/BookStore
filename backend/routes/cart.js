@@ -1,5 +1,6 @@
 const router = require("express").Router();
-const User = require("../models/user");
+const User = require("../models/user.js");
+const Book = require("../models/book.js");
 const { authenticateToken } = require("./userAuth");
 
 //put book to cart
@@ -48,11 +49,20 @@ router.put("/remove-from-cart/:bookid", authenticateToken, async (req, res) => {
 router.get("/get-user-cart", authenticateToken, async (req, res) => {
   try {
     const { id } = req.headers;
-    const userData = await User.findById(id).populate("cart");
-    const cart = userData.cart.reverse();
+    const userData = await User.findById(id);
+    const userCartId = userData.cart;
+    let userCart = [];
+    for (let i = 0; i < userCartId.length; i++) {
+      const newCart = await Book.findById(userCartId[i]);
+      if (!newCart) {
+        return res.status(500).json({ message: "invalid id" });
+      }
+      userCart.push(newCart);
+    }
+
     return res.json({
       status: "Success",
-      data: cart,
+      data: userCart,
     });
   } catch (error) {
     return res.status(500).json({ message: "An error occurred" });

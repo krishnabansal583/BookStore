@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import AllBooks from "./pages/AllBooks";
-import SignIn from "./pages/SignIn";
+import SignIn from "./pages/SignIn"
 import SignUp from "./pages/SignUp";
 import Cart from "./pages/Cart";
 import Profile from "./pages/Profile";
@@ -42,8 +42,8 @@ const App = () => {
         <Route path="/Cart" element={<Cart />} />
         <Route path="/Profile" element={<Profile />}>
           <Route index element={<Favourites />} />
-          <Route path="orderHistory" element={<UserOrderHistory />} /> {/* Relative path */}
-          <Route path="settings" element={<Settings />} /> {/* Relative path */}
+          <Route path="orderHistory" element={<UserOrderHistory />} /> 
+          <Route path="settings" element={<Settings />} /> 
         </Route>
         <Route path="/SignIn" element={<SignIn />} />
         <Route path="/SignUp" element={<SignUp />} />
