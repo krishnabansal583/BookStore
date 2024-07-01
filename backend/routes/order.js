@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const User = require("../models/user");
 const { authenticateToken } = require("./userAuth");
-const Order = require("../models/order")
-const Book = require ("../models/book")
+const Order = require("../models/order");
+const Book = require("../models/book");
 //place an order
 router.post("/place-order", authenticateToken, async (req, res) => {
   try {
@@ -36,14 +36,17 @@ router.post("/place-order", authenticateToken, async (req, res) => {
 router.get("/get-order-history", authenticateToken, async (req, res) => {
   try {
     const { id } = req.headers;
-    const userData = await User.findById(id).populate({
-      path: "orders",
-      populate: { path: "book" },
-    });
-    const ordersData = userData.orders.reverse();
+    const userData = await Order.find({ user: id });
+    const OrderHistory = [];
+    for (i = 0; i < userData.length; i++) {
+      const needBook = await Book.findById(userData[i].book);
+      OrderHistory.push(needBook);
+    }
+
+    // const ordersData = userData.orders.reverse();
     return res.json({
       status: "Success",
-      data: ordersData,
+      data: OrderHistory,
     });
   } catch (error) {
     return res.status(500).json({ message: "An error occurred" });
