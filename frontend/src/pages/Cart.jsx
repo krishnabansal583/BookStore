@@ -57,8 +57,8 @@ const Cart = () => {
   };
 
   return (
-    <div className="gradient-background flex h-full">
-      <div className="flex-1 px-12 py-8">
+    <div className="gradient-background flex flex-col md:flex-row h-full">
+      <div className="flex-1 px-4 md:px-12 py-8">
         {!Cart && (
           <div className="w-full h-full flex items-center justify-center">
             <Loader />
@@ -67,52 +67,52 @@ const Cart = () => {
         {Cart.length === 0 && (
           <div className="h-screen">
             <div className="h-full flex items-center justify-center flex-col">
-              <h1 className="text-5xl lg:text-6xl font-semibold text-zinc-600">
+              <h1 className="text-2xl md:text-5xl lg:text-6xl font-semibold text-zinc-600 text-center">
                 Your Cart is Empty
               </h1>
               <img
                 src="./Cart.png"
                 alt="empty cart"
-                className="lg:h-[50vh] mb-5"
+                className="h-[20vh] md:h-[40vh] lg:h-[50vh] mb-5"
               />
             </div>
           </div>
         )}
         {Cart.length > 0 && (
           <>
-            <h1 className="text-5xl font-semibold text-zinc-500 mb-8">
+            <h1 className="text-2xl md:text-5xl font-semibold text-zinc-500 mb-8">
               Your Cart
             </h1>
             {Cart.map((items, i) => (
               <div
-                className="w-[100%] my-4 rounded flex flex-col md:flex-row p-4 bg-blue-800 justify-between items-center"
+                className="w-full my-4 rounded flex flex-col md:flex-row p-4 bg-blue-800 justify-between items-center"
                 key={i}
               >
                 <img
                   src={items.imageURL}
                   alt={items.bookTitle}
-                  className="h-[20vh] md:h-[10vh] object-cover mr-4"
+                  className="h-[15vh] md:h-[10vh] object-cover mr-4"
                 />
                 <div className="w-full md:w-auto">
-                  <h1 className="text-2xl text-zinc-100 font-semibold text-start mt-2 md:mt-0">
+                  <h1 className="text-xl md:text-2xl text-zinc-100 font-semibold text-start mt-2 md:mt-0">
                     {items.bookTitle}
                   </h1>
-                  <p className="text-normal text-zinc-300 mt-2 hidden lg:block ">
+                  <p className="text-sm md:text-normal text-zinc-300 mt-2 hidden lg:block">
                     {items.bookDescription.slice(0, 100)}...
                   </p>
-                  <p className="text-normal text-zinc-300 mt-2 hidden md:block lg:hidden">
+                  <p className="text-sm md:text-normal text-zinc-300 mt-2 hidden md:block lg:hidden">
                     {items.bookDescription.slice(0, 65)}...
                   </p>
-                  <p className="text-normal text-zinc-300 mt-2 block md:hidden">
+                  <p className="text-sm md:text-normal text-zinc-300 mt-2 block md:hidden">
                     {items.bookDescription.slice(0, 100)}...
                   </p>
                 </div>
                 <div className="flex mt-4 w-full md:w-auto items-center justify-between">
-                  <h2 className="text-zinc-100 text-3xl font-semibold flex">
+                  <h2 className="text-zinc-100 text-xl md:text-3xl font-semibold flex">
                     {items.price}
                   </h2>
                   <button
-                    className="bg-red-100 text-red-700 border border-red-700 rounded p-2 ms-10 text-xl"
+                    className="bg-red-100 text-red-700 border border-red-900 rounded p-2 ms-10 text-xl"
                     onClick={() => deleteItem(items._id)}
                   >
                     <AiFillDelete />
@@ -124,9 +124,9 @@ const Cart = () => {
         )}
       </div>
       {Cart.length > 0 && (
-        <div className="w-[25%] h-full flex flex-col justify-between p-8 bg-zinc-500 shadow-lg backdrop-blur-lg bg-opacity-20 border border-gray-600 m-6">
-          <div className="flex-1 ">
-            <h1 className="text-4xl items-center justify-center font-semibold text-zinc-800">
+        <div className="w-full md:w-[30%] lg:w-[25%] h-full flex flex-col justify-between p-4 md:p-8 bg-zinc-500 shadow-lg backdrop-blur-lg bg-opacity-20 border border-gray-600 lg:m-6 ">
+          <div className="flex-1">
+            <h1 className="text-4xl md:text-4xl items-center justify-center font-semibold text-zinc-800">
               Order Summary
             </h1>
             <div className="mt-4">
@@ -136,7 +136,7 @@ const Cart = () => {
                     <img
                       src={items.imageURL}
                       alt={items.bookTitle}
-                      className="h-[20vh] object-cover mr-4"
+                      className="h-[10vh] object-cover mr-4"
                     />
                     <div>
                       <h2 className="text-lg font-semibold text-black">
@@ -155,9 +155,8 @@ const Cart = () => {
             </div>
           </div>
           <div className="p-4 w-full">
-            <div className="flex items-center justify-between text-xl font-semibold text-black">
+            <div className="flex items-center justify-between text-lg md:text-xl font-semibold text-black">
               <h2>
-                {" "}
                 {Cart.length} {Cart.length === 1 ? "book" : "books"}
               </h2>
               <h2>${Total.toFixed(2)}</h2>
