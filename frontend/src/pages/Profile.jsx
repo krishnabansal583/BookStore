@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Loader from "../components/Loader/Loader";
 import axios from "axios";
+import MobileNav from "../components/Profile/MobileNav";
 
 const Profile = () => {
   const [Profile, setProfile] = useState(null);
@@ -39,6 +40,7 @@ const Profile = () => {
         <>
           <div className=" w-full md:w-1/5 h-auto lg:h-screen ">
             <Sidebar data={Profile} />
+            <MobileNav/>
           </div>
           <div className="w-full md:w-4/5">
             <Outlet />
