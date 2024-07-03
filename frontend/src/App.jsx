@@ -19,6 +19,7 @@ import Settings from "./components/Profile/Settings";
 import "./index.css";
 import AllOrders from "./pages/AllOrders";
 import AddBook from "./pages/AddBook";
+import UpdateBook from "./pages/UpdateBook";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -48,13 +49,12 @@ const App = () => {
           ) : (
             <Route index element={<AllOrders />} />
           )}
-          {role === "admin" && (
-            <Route path="add-book" element={<AddBook />} />
-          )}{" "}
+          {role === "admin" && <Route path="add-book" element={<AddBook />} />}{" "}
           <Route path="orderHistory" element={<UserOrderHistory />} />
           <Route path="settings" element={<Settings />} />
         </Route>
         <Route path="/SignIn" element={<SignIn />} />
+        <Route path="/UpdateBook/:id" element={<UpdateBook />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/view-book-details/:id" element={<ViewBookDetails />} />
       </Routes>
