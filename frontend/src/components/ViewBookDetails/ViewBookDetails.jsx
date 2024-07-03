@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "../Loader/Loader";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { FaEdit, FaHeart, FaShoppingCart } from "react-icons/fa";
 import { MdOutlineDelete } from "react-icons/md";
 import { useSelector } from "react-redux";
 
 const ViewBookDetails = () => {
+  const navigate = useNavigate()
   const { id } = useParams();
   const [data, setData] = useState(null);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -55,7 +56,15 @@ const ViewBookDetails = () => {
     );
     alert(response.data.message);
   };
+  const deleteBook = async () => {
+    const response = await axios.delete(
+      "http://localhost:1000/api/v1/delete-book",
 
+      { headers }
+    );
+   alert(response.data.message);
+   navigate("/all-books")
+  };
   return (
     <div className="h-screen flex flex-col bg-gradient-to-b from-white to-[#fab9c4]">
       <div className="flex-grow px-4 py-8 flex flex-col md:flex-row gap-8 md:px-12">
@@ -71,7 +80,7 @@ const ViewBookDetails = () => {
               )}
 
               {isLoggedIn === true && role === "user" && (
-                <div className="absolute top-0 right-[-8px] mr-4 mt-4 flex flex-col items-center justify-center">
+                <div className="absolute top-0 right-[-8px] mr-5 mt-4 flex flex-col items-center justify-center">
                   <button
                     className="bg-white rounded-full text-2xl p-2 text-red-500 hover:text-red-600"
                     onClick={handleFavourite}
@@ -87,11 +96,14 @@ const ViewBookDetails = () => {
                 </div>
               )}
               {isLoggedIn === true && role === "admin" && (
-                <div className="absolute top-0 right-[-8px] mr-4 mt-4 flex flex-col items-center justify-center">
+                <div className="absolute top-0 right-[-8px] mr-5 mt-4 flex flex-col items-center justify-center">
                   <button className="bg-white rounded-full text-2xl p-2 ">
                     <FaEdit />
                   </button>
-                  <button className="bg-white rounded-full text-2xl p-2 mt-5 text-red-500">
+                  <button
+                    className="bg-white rounded-full text-2xl p-2 mt-5 text-red-500"
+                    onClick={deleteBook}
+                  >
                     <MdOutlineDelete />
                   </button>
                 </div>
