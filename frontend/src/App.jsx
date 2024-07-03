@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import AllBooks from "./pages/AllBooks";
-import SignIn from "./pages/SignIn"
+import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Cart from "./pages/Cart";
 import Profile from "./pages/Profile";
@@ -17,6 +17,8 @@ import UserOrderHistory from "./components/Profile/UserOrderHistory";
 import Settings from "./components/Profile/Settings";
 
 import "./index.css";
+import AllOrders from "./pages/AllOrders";
+import AddBook from "./pages/AddBook";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -41,9 +43,16 @@ const App = () => {
         <Route path="/all-books" element={<AllBooks />} />
         <Route path="/Cart" element={<Cart />} />
         <Route path="/Profile" element={<Profile />}>
-          <Route index element={<Favourites />} />
-          <Route path="orderHistory" element={<UserOrderHistory />} /> 
-          <Route path="settings" element={<Settings />} /> 
+          {role === "user" ? (
+            <Route index element={<Favourites />} />
+          ) : (
+            <Route index element={<AllOrders />} />
+          )}
+          {role === "admin" && (
+            <Route path="add-book" element={<AddBook />} />
+          )}{" "}
+          <Route path="orderHistory" element={<UserOrderHistory />} />
+          <Route path="settings" element={<Settings />} />
         </Route>
         <Route path="/SignIn" element={<SignIn />} />
         <Route path="/SignUp" element={<SignUp />} />

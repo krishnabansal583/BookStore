@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 .nav-link {
   text-shadow: 1px 1px 3px rgba(1, 0, 0, 0.3);
 }
@@ -12,6 +12,7 @@
 .font-playfair {
   font-family: "Playfair Display", serif;
 }
+
 
 .hero-image {
   width: 500px;

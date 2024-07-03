@@ -19,17 +19,20 @@ router.post("/add-book", authenticateToken, async (req, res) => {
       imageURL,
       category,
       bookDescription,
-      bookPDFURL
+      bookPDFURL,
     } = req.body;
+
+    // Ensure price is stored as a string with $ symbol
+    const formattedPrice = `$${parseFloat(price)}`;
 
     const book = new Book({
       bookTitle,
       authorName,
-      price,
+      price: formattedPrice,
       imageURL,
       category,
       bookDescription,
-      bookPDFURL
+      bookPDFURL,
     });
 
     await book.save();
@@ -39,6 +42,7 @@ router.post("/add-book", authenticateToken, async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 });
+
 
 // Update book -- admin
 router.put("/update-book", authenticateToken, async (req, res) => {

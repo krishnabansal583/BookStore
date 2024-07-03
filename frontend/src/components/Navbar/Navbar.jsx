@@ -26,12 +26,23 @@ const Navbar = () => {
       title: "Profile",
       link: "/profile",
     },
+    {
+      title: "Admin Profile",
+      link: "/profile",
+    },
   ];
 
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const role = useSelector((state) => state.auth.role);
   if (isLoggedIn === false) {
     links.splice(3, 3);
   }
+  if( isLoggedIn === true && role === "user"){
+    links.splice(5,1)
+   }
+ if( isLoggedIn === true && role === "admin"){
+  links.splice(4,1)
+ }
   const [MobileNav, setMobileNav] = useState("hidden");
 
   return (
@@ -49,7 +60,8 @@ const Navbar = () => {
         <div className="hidden md:flex nav-links flex items-center gap-6 flex-grow justify-center">
           {links.map((item, i) => (
             <div className="flex items-center" key={i}>
-              {item.title === "Profile" ? (
+              {item.title === "Profile" ||
+              item.title === "Admin Profile"? (
                 <Link
                   to={item.link}
                   className="signin-button px-4 py-2 bg-white-500 text-black rounded transform transition-transform hover:scale-105"
