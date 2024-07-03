@@ -1,8 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { FaSignOutAlt } from "react-icons/fa"; // Import the icon from react-icons
+import { Link, useNavigate } from "react-router-dom";
+import { FaSignOutAlt } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../store/auth";
 
 const Sidebar = ({ data }) => {
+  const dispatch = useDispatch();
+  const history = useNavigate();
+
   return (
     <div className="bg-[#DADEFF] p-5 rounded flex flex-col items-center justify-between h-auto lg:h-[100%]">
       <div className="items-center justify-center flex flex-col">
@@ -23,20 +28,30 @@ const Sidebar = ({ data }) => {
         </Link>
 
         <Link
-          to="orderHistory"
+          to="/orderHistory"
           className="text-zinc-800 font-semibold w-full py-2 mt-4 text-center hover:bg-[#5956E9]  hover:text-white rounded transition-all duration-300"
         >
           Order History
         </Link>
 
         <Link
-          to="settings"
+          to="/settings"
           className="text-zinc-800 font-semibold w-full py-2 mt-4 text-center hover:bg-[#5956E9]  hover:text-white rounded transition-all duration-300"
         >
           Settings
         </Link>
       </div>
-      <button className="bg-[#5956E9] w-3/6 lg:w-full mt-4 lg:mt-0 text-zinc-100 font-semibold flex items-center justify-center py-2 rounded hover:bg-[#6866f0] hover:text-zinc-300 transition-all duration-300">
+      <button
+        className="bg-[#5956E9] w-3/6 lg:w-full mt-4 lg:mt-0 text-zinc-100 font-semibold flex items-center justify-center py-2 rounded hover:bg-[#6866f0] hover:text-zinc-300 transition-all duration-300"
+        onClick={() => {
+          dispatch(authActions.logout());
+          dispatch(authActions.changeRole("user"));
+          localStorage.clear("id");
+          localStorage.clear("token");
+          localStorage.clear("role");
+          history("/");
+        }}
+      >
         Logout <FaSignOutAlt className="ml-4" />
       </button>
     </div>
