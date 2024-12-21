@@ -1,8 +1,8 @@
 const router = require("express").Router();
-const User = require("../models/user");
+const User = require("../models/user.js");
 const { authenticateToken } = require("./userAuth");
-const Order = require("../models/order");
-const Book = require("../models/book");
+const Order = require("../models/order.js");
+const Book = require("../models/book.js");
 //place an order
 router.post("/place-order", authenticateToken, async (req, res) => {
   try {
@@ -37,16 +37,15 @@ router.get("/get-order-history", authenticateToken, async (req, res) => {
   try {
     const { id } = req.headers;
     const userData = await Order.find({ user: id });
-    const OrderHistory = [];
+    const orderHistory = [];
     for (i = 0; i < userData.length; i++) {
-      const needBook = await Book.findById(userData[i].book);
-      OrderHistory.push(needBook);
+      let needBook = await Book.findById(userData[i].book).lean();
+      needBook.status = userData[i].status; // Adding the new field
+      orderHistory.push(needBook);
     }
-
-    // const ordersData = userData.orders.reverse();
     return res.json({
       status: "Success",
-      data: OrderHistory,
+      data: orderHistory,
     });
   } catch (error) {
     return res.status(500).json({ message: "An error occurred" });
@@ -57,20 +56,36 @@ router.get("/get-order-history", authenticateToken, async (req, res) => {
 
 router.get("/get-all-orders", authenticateToken, async (req, res) => {
   try {
-    const userData = await Order.find()
-      .populate({
-        path: "book",
-      })
-      .populate({
-        path: "user",
-      })
-      .sort({ createdAt: -1 });
-    return res.json({
-      status: "Success",
-      data: userData,
+    const orders = await Order.find().sort({ createdAt: -1 });
+    const bookIds = orders.map((order) => order.book);
+
+    const userIds = orders.map((order) => order.user);
+
+    const books = await Book.find({ _id: { $in: bookIds } });
+
+    const users = await User.find({ _id: { $in: userIds } });
+
+    const ordersWithData = orders.map((order) => {
+      const book = books.find(
+        (book) => book._id.toString() === order.book.toString()
+      );
+      const user = users.find(
+        (user) => user._id.toString() === order.user.toString()
+      );
+
+      return {
+        _id: order._id,
+        createdAt: order.createdAt,
+        status: order.status,
+        book: book,
+        user: user,
+      };
     });
+
+    res.json({ status: "Success", data: ordersWithData });
   } catch (error) {
-    return res.status(500).json({ message: "An error occurred" });
+    console.error("Error fetching orders:", error);
+    res.status(500).json({ message: "An error occurred" });
   }
 });
 
@@ -79,7 +94,12 @@ router.get("/get-all-orders", authenticateToken, async (req, res) => {
 router.put("/update-status/:id", authenticateToken, async (req, res) => {
   try {
     const { id } = req.params;
-    await Order.findByIdAndUpdate(id, { status: req.body.status });
+    const { status: receivedStatus } = req.body;
+    const status = receivedStatus || "Order Placed";
+    if (!status) {
+      status = "Order Placed";
+    }
+    await Order.findByIdAndUpdate(id, { status: status });
     return res.json({
       status: "Success",
       message: "Status Updated Successfully",

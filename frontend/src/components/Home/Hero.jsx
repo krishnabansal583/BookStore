@@ -32,7 +32,7 @@ const Hero = () => {
         <h1 className="text-4xl lg:text-6xl font-semibold text-black text-center lg:text-left">
           Unlock Adventures through Knowledge
         </h1>
-        <p className="mt-4 text-xl text-gray-700 text-center lg:text-left">
+        <p className="mt-4 text-xl text-gray-700 text-center lg:text-left cursive-font">
           Dive into a world of knowledge and inspiration with our books that
           promise to enrich and empower.
         </p>

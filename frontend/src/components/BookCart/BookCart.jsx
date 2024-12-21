@@ -36,9 +36,11 @@ const BookCart = ({ data, favourite, onRemoveBook }) => {
           <p className="mt-1 text-gray-700 font-semibold text-center">
             by {data.authorName}
           </p>
-          <p className="mt-5 text-black text-xl font-semibold text-center">
-            {data.price}
-          </p>
+          {!favourite && (
+            <p className="mt-5 text-black text-xl font-semibold text-center">
+              {data.price}
+            </p>
+          )}
         </div>
       </Link>
       {favourite && (
@@ -46,7 +48,7 @@ const BookCart = ({ data, favourite, onRemoveBook }) => {
           className="bg-yellow-400 px-3 py-1 rounded border border-blue-600 text-gray-800 font-semibold mt-3 hover:bg-yellow-500  transition-colors"
           onClick={handleRemoveBook}
         >
-          Remove 
+          Remove
         </button>
       )}
     </div>

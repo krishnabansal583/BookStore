@@ -6,6 +6,7 @@ import { authActions } from "./store/auth";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
+import About from "./components/About/About";
 import AllBooks from "./pages/AllBooks";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
@@ -20,6 +21,7 @@ import "./index.css";
 import AllOrders from "./pages/AllOrders";
 import AddBook from "./pages/AddBook";
 import UpdateBook from "./pages/UpdateBook";
+import { BrowserRouter } from "react-router-dom";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -40,23 +42,21 @@ const App = () => {
     <div>
       <Navbar />
       <Routes>
-        <Route exact path="/" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/all-books" element={<AllBooks />} />
-        <Route path="/Cart" element={<Cart />} />
-        <Route path="/Profile" element={<Profile />}>
-          {role === "user" ? (
-            <Route index element={<Favourites />} />
-          ) : (
-            <Route index element={<AllOrders />} />
-          )}
-          {role === "admin" && <Route path="add-book" element={<AddBook />} />}{" "}
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/about-us" element={<About/>} />
+        <Route path="/profile" element={<Profile />}>
+          <Route index element={role === "user" ? <Favourites /> : <AllOrders />} />
           <Route path="orderHistory" element={<UserOrderHistory />} />
           <Route path="settings" element={<Settings />} />
+          {role === "admin" && <Route path="add-book" element={<AddBook />} />}
         </Route>
-        <Route path="/SignIn" element={<SignIn />} />
-        <Route path="/UpdateBook/:id" element={<UpdateBook />} />
-        <Route path="/SignUp" element={<SignUp />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/updateBook/:id" element={<UpdateBook />} />
         <Route path="/view-book-details/:id" element={<ViewBookDetails />} />
+
       </Routes>
       <Footer />
     </div>
@@ -64,3 +64,12 @@ const App = () => {
 };
 
 export default App;
+
+
+
+
+
+
+
+
+

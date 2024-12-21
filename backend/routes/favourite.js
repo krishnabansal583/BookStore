@@ -29,12 +29,14 @@ router.put(
     try {
       const { bookid, id } = req.headers;
       const userData = await User.findById(id);
-      
-      const newFav = userData.favourites.filter(items => items != bookid);
-      console.log(newFav);
-      const check = await User.findOneAndUpdate({_id : id}, { favourites: newFav }, {new : true});
-      if(!check){
-        res.status(501).json({message : "error in updting fav"});
+      const newFav = userData.favourites.filter((items) => items != bookid);
+      const check = await User.findOneAndUpdate(
+        { _id: id },
+        { favourites: newFav },
+        { new: true }
+      );
+      if (!check) {
+        res.status(501).json({ message: "error in updting fav" });
       }
       return res.status(200).json({ message: "Book removed from favourite" });
     } catch (error) {
@@ -49,20 +51,17 @@ router.put(
 router.get("/get-favourite-books", authenticateToken, async (req, res) => {
   try {
     const { id } = req.headers;
-    console.log(id);
-    // const userData = await User.findById(id).populate("favourites");
     const userData = await User.findById(id);
     const fav = userData.favourites;
-    console.log(fav);
     const booksNeed = [];
-    for(let i = 0; i < fav.length; i++){
+    for (let i = 0; i < fav.length; i++) {
       const book = await Book.findById(fav[i]);
-      if(!book){
+      if (!book) {
         return res.json("error in finding book");
       }
       booksNeed.push(book);
     }
-    // const favouriteBooks = userData.favourites;
+
     return res.json({
       status: "Success",
       data: booksNeed,
@@ -71,6 +70,6 @@ router.get("/get-favourite-books", authenticateToken, async (req, res) => {
     console.log("here");
     return res.status(500).json({ message: "An error occurred" });
   }
-}); 
+});
 
 module.exports = router;

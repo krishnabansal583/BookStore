@@ -97,13 +97,13 @@ const Cart = () => {
                   <h1 className="text-xl md:text-2xl text-zinc-100 font-semibold text-start mt-2 md:mt-0">
                     {items.bookTitle}
                   </h1>
-                  <p className="text-sm md:text-normal text-zinc-300 mt-2 hidden lg:block">
+                  <p className="text-sm md:text-normal text-zinc-300 mt-2 hidden lg:block cursive-font">
                     {items.bookDescription.slice(0, 100)}...
                   </p>
-                  <p className="text-sm md:text-normal text-zinc-300 mt-2 hidden md:block lg:hidden">
+                  <p className="text-sm md:text-normal text-zinc-300 mt-2 hidden md:block lg:hidden cursive-font">
                     {items.bookDescription.slice(0, 65)}...
                   </p>
-                  <p className="text-sm md:text-normal text-zinc-300 mt-2 block md:hidden">
+                  <p className="text-sm md:text-normal text-zinc-300 mt-2 block md:hidden cursive-font">
                     {items.bookDescription.slice(0, 100)}...
                   </p>
                 </div>
@@ -142,7 +142,7 @@ const Cart = () => {
                       <h2 className="text-lg font-semibold text-black">
                         {items.bookTitle}
                       </h2>
-                      <p className="text-sm text-gray-700">
+                      <p className="text-sm text-gray-700 cursive-font">
                         {items.bookDescription.slice(0, 50)}...
                       </p>
                       <p className="text-lg font-semibold text-black">

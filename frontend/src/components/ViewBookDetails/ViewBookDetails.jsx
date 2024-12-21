@@ -66,7 +66,7 @@ const ViewBookDetails = () => {
     navigate("/all-books");
   };
   return (
-    <div className="h-screen flex flex-col bg-gradient-to-b from-white to-[#fab9c4]">
+    <div className="md:h-screen lg:h-screen flex flex-col bg-gradient-to-b from-white to-[#fab9c4]">
       <div className="flex-grow px-4 py-8 flex flex-col md:flex-row gap-8 md:px-12">
         <div className="flex flex-col md:flex-row gap-8 w-full h-auto">
           <div className="relative w-full sm:w-[50%] md:w-[35%]">
@@ -114,16 +114,16 @@ const ViewBookDetails = () => {
             </div>
           </div>
           <div className="p-4 w-full md:w-[75%]">
-            <h1 className="text-3xl lg:text-4xl text-zinc-500 font-semibold mb-2">
+            <h1 className="text-3xl lg:text-4xl text-zinc-700 font-semibold mb-2">
               {data.bookTitle}
             </h1>
-            <p className="text-gray-500 font-medium mb-2">
+            <p className="text-gray-600 font-medium mb-2">
               By ~ {data.authorName}
             </p>
-            <p className="text-zinc-500 mt-4 text-base lg:font-semibold md:text-xl md:font-normal">
+            <p className="text-zinc-500 mt-4 text-base lg:font-semibold md:text-xl md:font-normal cursive-font">
               {data.bookDescription}
             </p>
-            <p className="text-zinc-500 mb-1 mt-4 text-xl font-semibold">
+            <p className="text-zinc-700 mb-1 mt-4 text-xl font-semibold">
               Category: {data.category}
             </p>
             <p className="text-zinc-900 text-2xl font-semibold">

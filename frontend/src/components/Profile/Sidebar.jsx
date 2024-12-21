@@ -29,14 +29,14 @@ const Sidebar = ({ data }) => {
           </Link>
 
           <Link
-            to="/orderHistory"
+            to="/profile/orderHistory"
             className="text-zinc-800 font-semibold w-full py-2 mt-4 text-center hover:bg-[#5956E9]  hover:text-white rounded transition-all duration-300"
           >
             Order History
           </Link>
 
           <Link
-            to="/settings"
+            to="/profile/settings"
             className="text-zinc-800 font-semibold w-full py-2 mt-4 text-center hover:bg-[#5956E9]  hover:text-white rounded transition-all duration-300"
           >
             Settings
