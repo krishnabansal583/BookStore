@@ -14,8 +14,8 @@ const RecentlyAdded = () => {
     fetch();
   }, []);
   return (
-    <div className="mt-8 px-3">
-      <h2 className="text-4xl font-semibold text-black mb-4">New Arrivals</h2>
+    <div className="mt-8 px-6">
+      <h2 className="text-4xl text-center font-semibold text-black mb-4">New Arrivals</h2>
       {!Data && (
         <div className="flex items-center justify-center my-8">
           <Loader />

@@ -29,11 +29,15 @@ const AllBooks = () => {
     const fetchBooks = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("http://localhost:1000/api/v1/get-all-books");
+        const res = await axios.get(
+          "http://localhost:1000/api/v1/get-all-books"
+        );
         const books = Array.isArray(res.data.data) ? res.data.data : [];
         setData(books);
       } catch (err) {
-        setError(err.response?.data?.message || err.message || "Failed to load books");
+        setError(
+          err.response?.data?.message || err.message || "Failed to load books"
+        );
       } finally {
         setLoading(false);
       }
@@ -121,7 +125,7 @@ const AllBooks = () => {
     <div
       className="min-h-screen py-8 px-4 sm:px-6 lg:px-12"
       style={{
-        background: "linear-gradient(to bottom, #ffffff 0%, #FDCFFA 100%)",
+        background: "#FDCFFA",
       }}
     >
       {/* Header */}

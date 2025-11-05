@@ -33,7 +33,7 @@ const Profile = () => {
 
   if (!profile) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#FDCFFA] to-white">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-[#FDCFFA]">
         <Loader />
       </div>
     );
