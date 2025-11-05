@@ -39,7 +39,7 @@ const Hero = () => {
         <div className="mt-8">
           <Link
             to="/all-books"
-            className="text-white bg-[#7C79ED] text-xl lg:text-2xl font-semibold px-10 py-3 rounded-full shadow-xl hover:shadow-lg flex items-center gap-1"
+            className="text-white bg-[#4E56C0] text-xl lg:text-2xl font-semibold px-10 py-3 rounded-full shadow-xl hover:shadow-lg flex items-center gap-1"
           >
             Explore Books
             <BiRightArrow

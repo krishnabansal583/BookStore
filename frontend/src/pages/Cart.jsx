@@ -71,8 +71,11 @@ const Cart = () => {
   };
 
   return (
-    <div className="min-h-screen" style={{ background: 'linear-gradient(to bottom, #ffffff, #e9d5ff)' }}>
-      <div className="max-w-7xl mx-auto px-4 py-8">
+   <div
+  className="min-h-screen py-8 px-4 sm:px-6 lg:px-12 bg-gradient-to-b from-white to-[#FDCFFA]"
+>
+  <div className="max-w-7xl mx-auto">
+
         {!Cart && (
           <div className="w-full h-[80vh] flex items-center justify-center">
             <Loader />
@@ -93,7 +96,7 @@ const Cart = () => {
               </p>
               <button
                 onClick={() => navigate("/")}
-                className="bg-gradient-to-r from-purple-400 to-violet-400 text-white px-8 py-3 rounded-full font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                className="bg-[#4E56C0] text-white px-8 py-3 rounded-full font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105"
               >
                 Browse Books
               </button>
@@ -215,7 +218,7 @@ const Cart = () => {
                 {/* Place Order Button */}
                 <button
                   onClick={PlaceOrder}
-                  className="w-full bg-gradient-to-r from-purple-400 to-violet-400 text-white py-4 rounded-xl font-bold text-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
+                  className="w-full bg-[#4E56C0] text-white py-4 rounded-xl font-bold text-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
                 >
                   <CreditCard className="w-5 h-5" />
                   Place Order
