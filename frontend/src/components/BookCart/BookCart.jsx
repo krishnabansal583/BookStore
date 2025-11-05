@@ -45,7 +45,7 @@ const BookCart = ({ data, favourite, onRemoveBook }) => {
       </Link>
       {favourite && (
         <button
-          className="bg-yellow-400 px-3 py-1 rounded border border-blue-600 text-gray-800 font-semibold mt-3 hover:bg-yellow-500  transition-colors"
+          className="bg-[#4E56C0] px-3 py-2 rounded-lg border text-white font-semibold mt-3 hover:bg-red-400  transition-colors"
           onClick={handleRemoveBook}
         >
           Remove
