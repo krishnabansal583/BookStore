@@ -1,8 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap");
+
 .nav-link {
   text-shadow: 1px 1px 3px rgba(1, 0, 0, 0.3);
   justify-content: center;
@@ -13,6 +15,7 @@
 .font-roboto {
   font-family: "Roboto", sans-serif;
 }
+
 .font-playfair {
   font-family: "Playfair Display", serif;
 }
@@ -28,6 +31,7 @@
 .hero-image:hover {
   transform: translateY(-5px);
 }
+
 .signin-button,
 .signup-button {
   font-size: 1rem;
@@ -60,7 +64,6 @@
 
 .gradient-background {
   background: linear-gradient(to bottom, #ffffff, #ffcccb);
-
 }
 
 .glass-effect {
@@ -78,21 +81,11 @@
 .text-black {
   color: black;
 }
+
 body {
   font-family: "Roboto", sans-serif;
 }
 
-.font-roboto {
-  font-family: "Roboto", sans-serif;
-}
 .cursive-font {
   font-family: "Comic Sans MS", cursive;
-}
-
-.font-playfair {
-  font-family: "Playfair Display", serif;
-}
-
-.font-roboto {
-  font-family: "Roboto", sans-serif;
 }

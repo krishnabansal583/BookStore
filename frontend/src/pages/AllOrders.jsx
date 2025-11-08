@@ -299,7 +299,7 @@ const AllOrders = () => {
                       <img
                         src={
                           order?.book?.imageURL ||
-                          "https://via.placeholder.com/150"
+                          "https://placehold.co/150x200/e2e8f0/64748b?text=No+Image"
                         }
                         alt={order?.book?.bookTitle || "No Title"}
                         className="h-40 w-28 object-cover rounded-lg shadow-md"

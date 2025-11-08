@@ -1,7 +1,16 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { User, Mail, Lock, MapPin, Eye, EyeOff, ArrowRight, BookOpen } from "lucide-react";
+import {
+  User,
+  Mail,
+  Lock,
+  MapPin,
+  Eye,
+  EyeOff,
+  ArrowRight,
+  BookOpen,
+} from "lucide-react";
 
 const SignUp = () => {
   const [Values, setValues] = useState({
@@ -61,9 +70,11 @@ const SignUp = () => {
       {/* Centered Form Card */}
       <div className="relative z-10 w-full max-w-md">
         <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
-
           {/* Header */}
-          <div className="p-8 text-white text-center" style={{ backgroundColor: "#4E56C0" }}>
+          <div
+            className="p-8 text-white text-center"
+            style={{ backgroundColor: "#4E56C0" }}
+          >
             <div className="flex items-center justify-center gap-2 mb-2">
               <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
                 <BookOpen className="w-5 h-5" />
@@ -75,11 +86,19 @@ const SignUp = () => {
 
           {/* Form Body */}
           <div className="p-8">
-            <form onSubmit={(e) => { e.preventDefault(); submit(); }} className="space-y-5">
-              
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                submit();
+              }}
+              className="space-y-5"
+            >
               {/* Username */}
               <div>
-                <label htmlFor="username" className="flex items-center gap-2 text-gray-700 font-medium mb-2 text-sm">
+                <label
+                  htmlFor="username"
+                  className="flex items-center gap-2 text-gray-700 font-medium mb-2 text-sm"
+                >
                   <User className="w-4 h-4 text-[#4E56C0]" />
                   Username
                 </label>
@@ -100,7 +119,10 @@ const SignUp = () => {
 
               {/* Email */}
               <div>
-                <label htmlFor="email" className="flex items-center gap-2 text-gray-700 font-medium mb-2 text-sm">
+                <label
+                  htmlFor="email"
+                  className="flex items-center gap-2 text-gray-700 font-medium mb-2 text-sm"
+                >
                   <Mail className="w-4 h-4 text-[#4E56C0]" />
                   Email
                 </label>
@@ -121,7 +143,10 @@ const SignUp = () => {
 
               {/* Password */}
               <div>
-                <label htmlFor="password" className="flex items-center gap-2 text-gray-700 font-medium mb-2 text-sm">
+                <label
+                  htmlFor="password"
+                  className="flex items-center gap-2 text-gray-700 font-medium mb-2 text-sm"
+                >
                   <Lock className="w-4 h-4 text-[#4E56C0]" />
                   Password
                 </label>
@@ -142,14 +167,21 @@ const SignUp = () => {
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-[#4E56C0] hover:bg-gray-100 rounded-full transition-all"
                   >
-                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                    {showPassword ? (
+                      <EyeOff className="w-5 h-5" />
+                    ) : (
+                      <Eye className="w-5 h-5" />
+                    )}
                   </button>
                 </div>
               </div>
 
               {/* Address */}
               <div>
-                <label htmlFor="address" className="flex items-center gap-2 text-gray-700 font-medium mb-2 text-sm">
+                <label
+                  htmlFor="address"
+                  className="flex items-center gap-2 text-gray-700 font-medium mb-2 text-sm"
+                >
                   <MapPin className="w-4 h-4 text-[#4E56C0]" />
                   Address
                 </label>

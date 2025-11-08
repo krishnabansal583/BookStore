@@ -300,7 +300,7 @@ export default function AboutPage() {
         </div>
       )}
 
-      <style jsx>{`
+      <style>{`
         @keyframes scale-in {
           from {
             transform: scale(0.9);
